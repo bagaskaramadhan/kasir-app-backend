@@ -1,12 +1,12 @@
 import { RequestHandler } from "express";
-import { ProductsEntity, selectAllColumn, productTransform } from "../../../entity/productEntity";
+import { ProductsEntity } from "../../../entity/productEntity";
 import dayjs from "dayjs";
 
 export const GetAllProduct: RequestHandler = async (req, res, { }) => {
     try {
         // let query = `
         // SELECT 
-        // ${selectAllColumn()} 
+        // ${stateProduct()} 
         // FROM
         // ks_product`;
         // const getAllProduct = await ProductsEntity.query(query)
@@ -30,5 +30,6 @@ export const GetAllProduct: RequestHandler = async (req, res, { }) => {
         return res.status(200).send(result)
     } catch (err) {
         console.error("Error @GetAllProduct", err)
+        return res.status(404).send({ error: "Not found" })
     }
 }

@@ -26,15 +26,15 @@ export class ProductsEntity extends BaseEntity {
     imgUrl: string;
 
     @Column({ name: "updated_at", type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt: Date | string;
 
     @Column({ name: "created_at", type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt: Date | string;
 
 };
 
 // function untuk select * from
-export const selectAllColumn = () => {
+export const stateProduct = () => {
     const columnsMap = getMetadataArgsStorage()
         .columns
         .map(item => item.options.name);
