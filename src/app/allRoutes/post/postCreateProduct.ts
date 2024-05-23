@@ -4,6 +4,7 @@ import joi from "joi"
 import dayjs from "dayjs";
 import { ProductsEntity, productTransform, stateProduct } from "../../../entity/productEntity";
 import { upload } from "../../../lib/helper/upload";
+import { TableName } from "../../../lib/helper/constant";
 
 export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
     try {
@@ -12,6 +13,7 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
                 console.error("Error uploading file:", err);
                 return res.status(400).json({ error: err.message });
             }
+
             const bodyFormat = joi.object({
                 productName: joi.string().min(3).required(),
                 categoryId: joi.string().required(),
@@ -19,6 +21,7 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
                 price: joi.number().required(),
                 description: joi.string(),
             })
+
             const { error, value } = bodyFormat.validate(req.body);
             if (error) {
                 return res.status(400).json({ message: error.message });
@@ -35,7 +38,7 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
                 customId = `ID${currentDate}-${i}`;
                 const query = `
                 SELECT ${state}
-                FROM ks_product
+                FROM ${TableName.PRODUCT}
                 WHERE LOWER(product_id) = LOWER("${customId}")
             `;
                 const rawQuery = await ProductsEntity.query(query);
@@ -45,9 +48,6 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
                 }
             }
             // custom id finish
-
-            // upload
-
 
             const productData = new ProductsEntity();
             productData.idProduct = customId;
@@ -61,7 +61,6 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
             await productData.save();
             return res.sendStatus(200);
         });
-
 
     } catch (err) {
         console.error("Error @PostCreateProduct", err)

@@ -8,7 +8,7 @@ export const GetAllProduct: RequestHandler = async (req, res, { }) => {
         // SELECT 
         // ${stateProduct()} 
         // FROM
-        // ks_product`;
+        // ${TableName.PRODUCT}`;
         // const getAllProduct = await ProductsEntity.query(query)
         // const result = await productTransform(getAllProduct)
         // return res.status(200).send(result)
