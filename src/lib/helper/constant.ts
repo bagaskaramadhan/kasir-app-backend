@@ -1,3 +1,4 @@
 export enum TableName {
-    PRODUCT = "ks_product"
+    PRODUCT = "ks_product",
+    CATEGORY = "ks_category"
 }

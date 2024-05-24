@@ -9,6 +9,7 @@ import cors from "cors";
 const config = new Config;
 const app = express();
 
+app.use('/uploads', express.static('./src/uploads'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true }));

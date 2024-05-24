@@ -11,7 +11,7 @@ export class ProductsEntity extends BaseEntity {
     productName: string;
 
     @Column({ name: "category_id" })
-    categoryId: string;
+    categoryId: number;
 
     @Column({ name: "stock" })
     stock: string;

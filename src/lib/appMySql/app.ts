@@ -1,8 +1,7 @@
 import * as mysql from "mysql2"
 import { Config } from "../config"
 import { DataSource } from "typeorm";
-import { ProductsEntity } from "../../entity/productEntity";
-
+import { CategoryEntity, ProductsEntity } from "../../entity/main";
 
 const config = new Config()
 export const connectionMySQL = async () => {
@@ -31,7 +30,7 @@ export const AppDataSource = new DataSource({
     username: config.dbUsername,
     password: config.dbPassword,
     database: config.dbName,
-    entities: [ProductsEntity],
+    entities: [ProductsEntity, CategoryEntity],
     synchronize: false,
     logging: false,
 });
