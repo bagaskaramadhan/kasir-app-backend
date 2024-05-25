@@ -30,7 +30,7 @@ export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
             // create custom id
             // check how many data today
             let customId;
-            const state = stateProduct()
+            const state = stateProduct(ProductsEntity)
             const currentDate = dayjs().format("YYMMDD");
 
             // looping to find id not used

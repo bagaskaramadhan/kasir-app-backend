@@ -11,12 +11,14 @@ export class CategoryEntity extends BaseEntity {
 };
 
 // function only for select * from
-export const stateCategory = () => {
+export const stateCategory = (entityClass: any) => {
     const columnsMap = getMetadataArgsStorage()
-        .columns
-        .map(item => item.options.name);
-    const columnName = columnsMap.join(", ");
-    return columnName;
+    .columns;
+    const filteredColumns = columnsMap.filter(column => column.target === entityClass);
+
+    const columnNames = filteredColumns.map(item => item.options.name);
+    const columnNameString = columnNames.join(", ");
+    return columnNameString;
 };
 
 // function mapping when use query()

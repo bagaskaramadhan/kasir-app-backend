@@ -34,13 +34,15 @@ export class ProductsEntity extends BaseEntity {
 };
 
 // function untuk select * from
-export const stateProduct = () => {
+export const stateProduct = (entityClass: any) => {
     const columnsMap = getMetadataArgsStorage()
-        .columns
-        .map(item => item.options.name);
-    const columnName = columnsMap.join(", ");
-    return columnName;
-};
+    .columns;
+    const filteredColumns = columnsMap.filter(column => column.target === entityClass);
+    
+    const columnNames = filteredColumns.map(item => item.options.name);
+    const columnNameString = columnNames.join(", ");
+    return columnNameString;
+}
 
 // function mapping ketika pakai query()
 export const productTransform = async (data: any) => {
