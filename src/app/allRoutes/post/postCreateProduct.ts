@@ -1,5 +1,4 @@
 import { RequestHandler } from "express";
-import { v4 as uuid } from 'uuid';
 import joi from "joi"
 import dayjs from "dayjs";
 import { ProductsEntity, productTransform, stateProduct } from "../../../entity/productEntity";
