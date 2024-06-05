@@ -16,7 +16,8 @@ export const upload = multer({
 		if (file.originalname.match(/\.(jpg|jpeg|png)\b/)) {
 			cb(null, true);
 		} else {
-			console.log("ERROR UPLAD");
+			cb(null, false);
+			console.log("ERROR UPLOAD: File format tidak diizinkan");
 		}
 	}
 });

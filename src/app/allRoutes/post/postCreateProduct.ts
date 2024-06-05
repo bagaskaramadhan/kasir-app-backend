@@ -7,7 +7,7 @@ import { TableName } from "../../../lib/helper/constant";
 
 export const PostCreateProduct: RequestHandler = async (req, res, { }) => {
     try {
-        upload.single('image')(req, res, async (err) => {
+        upload.single('imageFile')(req, res, async (err) => {
             if (err) {
                 console.error("Error uploading file:", err);
                 return res.status(400).json({ error: err.message });
